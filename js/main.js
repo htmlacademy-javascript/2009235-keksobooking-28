@@ -1,0 +1,1 @@
+import './simular-data.js';
