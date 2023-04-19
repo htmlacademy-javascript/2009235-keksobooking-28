@@ -60,17 +60,19 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const createLocation = () => ({
   lat: getRandomInteger((35.65000 * 10000), (35.70000 * 10000)) / 10000,
   lng: getRandomInteger((139.70000 * 10000), 139.80000 * 10000) / 10000,
-  getAddress,
 });
 
 const createAutor = () => ({
   avatar: `img/avatars/user${ generateRandomAvatarURL().toString().padStart(2, '0') }.png`,
 });
 
-//const getAddress = (location) => `${ location.lat } , ${ location.lng }`;
-function getAddress () {
-  return `${ this.lat } , ${ this.lng }`;
-}
+const getAddress = (location) => `${ location.lat } , ${ location.lng }`;
+
+const generateFeatures = () => {
+  const getRandomFeatur = createRandomIdFromRangeGenerator(0, offerFeatures.length - 1);
+  const getRandomFeaturElement = () => offerFeatures[getRandomFeatur()];
+  return Array.from({length: getRandomInteger(0, offerFeatures.length - 1)}, getRandomFeaturElement);
+};
 
 const createOffer = (location) => ({
   title: getRandomArrayElement(offerTitles),
@@ -81,7 +83,7 @@ const createOffer = (location) => ({
   guests: getRandomInteger(1, 10),
   checkin: getRandomArrayElement(offerCheckInOut),
   checkout: getRandomArrayElement(offerCheckInOut),
-  features: getRandomArrayElement(offerFeatures),
+  features: generateFeatures(),
   description: getRandomArrayElement(offerDescription),
   photos: getRandomArrayElement(offerPhotos),
 });
@@ -93,14 +95,12 @@ const createPoster = () => {
     location: createLocation(),
   };
 
-  poster.offer = createOffer(poster.location.getAddress());
+  poster.offer = createOffer(getAddress(poster.location));
 
   return poster;
 };
 
 
 const simularPosters = (count) => Array.from({length: count}, createPoster);
-
-console.log(simularPosters(10));
 
 export {simularPosters};
