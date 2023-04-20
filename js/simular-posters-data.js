@@ -68,11 +68,12 @@ const createAutor = () => ({
 
 const getAddress = (location) => `${ location.lat } , ${ location.lng }`;
 
-const generateFeatures = () => {
-  const getRandomFeatur = createRandomIdFromRangeGenerator(0, offerFeatures.length - 1);
-  const getRandomFeaturElement = () => offerFeatures[getRandomFeatur()];
-  return Array.from({length: getRandomInteger(0, offerFeatures.length - 1)}, getRandomFeaturElement);
+const generateRadomArray = (array) => {
+  const getRandomElementIndex = createRandomIdFromRangeGenerator(0, array.length - 1);
+  const getRandomElement = () => array[getRandomElementIndex()];
+  return Array.from({length: getRandomInteger(0, array.length)}, getRandomElement);
 };
+
 
 const createOffer = (location) => ({
   title: getRandomArrayElement(offerTitles),
@@ -83,9 +84,9 @@ const createOffer = (location) => ({
   guests: getRandomInteger(1, 10),
   checkin: getRandomArrayElement(offerCheckInOut),
   checkout: getRandomArrayElement(offerCheckInOut),
-  features: generateFeatures(),
+  features: generateRadomArray(offerFeatures),
   description: getRandomArrayElement(offerDescription),
-  photos: getRandomArrayElement(offerPhotos),
+  photos: generateRadomArray(offerPhotos),
 });
 
 const createPoster = () => {
