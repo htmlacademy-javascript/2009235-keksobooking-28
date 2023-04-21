@@ -1,6 +1,6 @@
 import {
   createRandomIdFromRangeGenerator,
-  createdIdGenerator,
+  //createdIdGenerator,
   getRandomInteger,
 } from './utils.js';
 
@@ -52,7 +52,7 @@ const offerPhotos = [
 ];
 
 
-const generateID = createdIdGenerator();
+//const generateID = createdIdGenerator();
 const generateRandomAvatarURL = createRandomIdFromRangeGenerator(1, 10);
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
@@ -91,7 +91,7 @@ const createOffer = (location) => ({
 
 const createPoster = () => {
   const poster = {
-    id: generateID(),
+    //id: generateID(),
     author: createAutor(),
     location: createLocation(),
   };

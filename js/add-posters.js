@@ -16,7 +16,7 @@ const getOfferType = (type) => OfferType[type.toUpperCase()];
 const addPosters = (postersData) => {
   const simularListFragment = document.createDocumentFragment();
 
-  const addPoster = ({ author, offer, id}) => {
+  const addPoster = ({ author, offer}) => {
     const posterElement = newPosterTemplate.cloneNode(true);
 
 
@@ -104,7 +104,6 @@ const addPosters = (postersData) => {
     }
 
 
-    posterElement.dataset.posterId = id;
     simularListFragment.appendChild(posterElement);
   };
 
