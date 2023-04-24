@@ -44,7 +44,7 @@ const pristine = new Pristine(advertisementForm, {
 });
 
 
-const validateFile = (value) => /.jpg$/i.test(value) || /.png$/i.test(value) || /.jpeg$/i.test(value);
+const validateFile = (value) => /.jpg$/i.test(value) || /.png$/i.test(value) || /.jpeg$/i.test(value) || value.length === 0;
 
 pristine.addValidator(
   avatarFileInput,
