@@ -189,3 +189,8 @@ async function postAdvertisementData (formData) {
     unblockSubmitButton();
   }
 }*/
+
+export {
+  MAX_PRICE_VALUE,
+  pristine,
+};
