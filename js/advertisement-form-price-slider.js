@@ -5,7 +5,6 @@ const START_VALUE = 5000;
 const advertisementForm = document.querySelector('.ad-form');
 const sliderElement = advertisementForm.querySelector('.ad-form__slider');
 const valueElement = advertisementForm.querySelector('input[id="price"]');
-const resetButton = advertisementForm.querySelector('button[type="reset"]');
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -44,16 +43,12 @@ const setEnablePriceFilter = () => {
 
 setDisablePriceFilter();
 
-const resetAdvertisementForm = (evt) => {
-  evt.preventDefault();
-  advertisementForm.reset();
+const resetPriceSlider = () => {
   sliderElement.noUiSlider.updateOptions({
     start: START_VALUE,
   });
   valueElement.value = START_VALUE;
-  pristine.reset();
 };
 
-resetButton.addEventListener('click', resetAdvertisementForm);
 
-export {setEnablePriceFilter, resetAdvertisementForm};
+export {setEnablePriceFilter, resetPriceSlider};

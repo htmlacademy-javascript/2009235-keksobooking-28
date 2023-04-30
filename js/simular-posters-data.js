@@ -91,7 +91,6 @@ const createOffer = (location) => ({
 
 const createPoster = () => {
   const poster = {
-    //id: generateID(),
     author: createAutor(),
     location: createLocation(),
   };

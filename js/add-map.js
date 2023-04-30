@@ -1,4 +1,4 @@
-import {setEnableAdvertisementForm, setEnableMapFiltersForm} from './active-disable-state-forms.js';
+import {setEnableAdvertisementForm} from './active-disable-state-forms.js';
 import {setEnablePriceFilter} from './advertisement-form-price-slider.js';
 import {addPoster} from './add-posters.js';
 
@@ -29,12 +29,15 @@ const startCoordinate = {
 const advertisementForm = document.querySelector('.ad-form');
 const addressInput = advertisementForm.querySelector('input[id="address"]');
 addressInput.setAttribute('readonly', true);
-addressInput.value = `${ startCoordinate.lat.toFixed(5) } , ${ startCoordinate.lng.toFixed(5) }`;
+
+const setAddressInputValue = ({ lat, lng }) => {
+  addressInput.value = `${ lat.toFixed(5) } , ${ lng.toFixed(5) }`;
+};
+setAddressInputValue(startCoordinate);
 
 const map = L.map('map-canvas')
   .on('load', () => {
     setEnableAdvertisementForm();
-    setEnableMapFiltersForm();
     setEnablePriceFilter();
   })
   .setView(startCoordinate, ZOOM);
@@ -75,6 +78,7 @@ const createPoints = (points) => {
 };
 
 /*----------*/
+
 const mainPinIcon = L.icon({
   iconUrl: iconMainConfig.url,
   iconSize: [iconMainConfig.width, iconMainConfig.height],
@@ -90,12 +94,14 @@ mainPinMarker.addTo(map);
 
 mainPinMarker.on('moveend', (evt) => {
   const mainPinLatLng = evt.target.getLatLng();
-  addressInput.value = `${ mainPinLatLng.lat.toFixed(5) } , ${ mainPinLatLng.lng.toFixed(5) }`;
+  setAddressInputValue(mainPinLatLng);
 });
 
 const resetSettingsForMainPin = () => {
   mainPinMarker.setLatLng(startCoordinate);
   map.setView(startCoordinate, ZOOM);
+  setAddressInputValue(startCoordinate);
+  map.closePopup();
 };
 
 export {createPoints, resetSettingsForMainPin};

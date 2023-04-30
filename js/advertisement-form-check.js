@@ -1,12 +1,3 @@
-import {showAlert} from './utils.js';
-import {sendData} from './api.js';
-//import {resetAdvertisementForm} from './advertisement-form-price-slider.js';
-
-const SubmitButtonText = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Опубликовывается...'
-};
-
 const MinPriceByType = {
   'flat': 1000,
   'bungalow': 0,
@@ -31,7 +22,6 @@ const checkinInput = advertisementForm.querySelector('select[id="timein"]');
 const checkoutInput = advertisementForm.querySelector('select[id="timeout"]');
 const inputsRequired = advertisementForm.querySelectorAll('[required]');
 
-const submitButton = advertisementForm.querySelector('button[type="submit"]');
 
 inputsRequired.forEach((inputRequired) => {
   inputRequired.dataset.pristineRequiredMessage = 'Обязательное для заполнения поле.';
@@ -149,46 +139,6 @@ const onTimeoutChange = (evt) => {
 };
 
 checkoutInput.addEventListener('change', onTimeoutChange);
-
-/*----------*/
-
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = SubmitButtonText.SENDING;
-};
-
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = SubmitButtonText.IDLE;
-};
-
-/*----------*/
-
-advertisementForm.addEventListener('submit', (evt) => {
-  //evt.preventDefault();
-  const isValid = pristine.validate();
-
-  if (!isValid) {
-    evt.preventDefault();
-    //blockSubmitButton();
-    //postAdvertisementData(new FormData(evt.target));
-  }
-});
-
-/*
-async function postAdvertisementData (formData) {
-  try {
-    await sendData(formData);
-    advertisementForm.reset();
-    pristine.reset();
-    //openLoadPictureMessageSuccess();
-  } catch (err) {
-    showAlert(err.message);
-    //openLoadPictureMessageError();
-  } finally {
-    unblockSubmitButton();
-  }
-}*/
 
 export {
   MAX_PRICE_VALUE,

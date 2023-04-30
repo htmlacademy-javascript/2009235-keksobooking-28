@@ -1054,3 +1054,8 @@ fieldset {
   padding-bottom: 10px;
   color: #e90000;
 }
+
+.modal-open {
+  height: 100vh;
+  overflow: hidden;
+}
