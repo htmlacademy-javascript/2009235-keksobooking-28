@@ -1,6 +1,6 @@
 import {showAlert} from './utils.js';
 import {sendData} from './api.js';
-//import {openLoadPictureMessageSuccess, openLoadPictureMessageError} from './user-picture-post-result-messages.js';
+//import {resetAdvertisementForm} from './advertisement-form-price-slider.js';
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',

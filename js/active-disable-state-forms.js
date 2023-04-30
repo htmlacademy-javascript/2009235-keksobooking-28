@@ -26,9 +26,10 @@ const setEnableAdvertisementForm = () => addActiveState(advertisementForm, adver
 
 const setEnableMapFiltersForm = () => addActiveState(mapFiltersForm, mapFiltersInputs);
 
+setDisableAdvertisementForm();
+setDisableMapFiltersForm();
+
 export {
-  setDisableAdvertisementForm,
   setEnableAdvertisementForm,
-  setDisableMapFiltersForm,
   setEnableMapFiltersForm,
 };
