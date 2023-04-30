@@ -29,7 +29,7 @@ const onOutsideModalWindow = (evt) => {
 
 
 function openLoadAdvertisementMessageError () {
-  document.body.prepend(newLoadAdvertisementErrorTemplate);
+  document.body.appendChild(newLoadAdvertisementErrorTemplate);
   const errorModalWindow = document.querySelector('.error');
   const errorCloseButton = errorModalWindow.querySelector('.error__button');
 
@@ -42,7 +42,7 @@ function openLoadAdvertisementMessageError () {
 
 
 function openLoadAdvertisementMessageSuccess () {
-  document.body.prepend(newLoadAdvertisementSuccessTemplate);
+  document.body.appendChild(newLoadAdvertisementSuccessTemplate);
   const successModalWindow = document.querySelector('.success');
 
   document.body.classList.add('modal-open');
