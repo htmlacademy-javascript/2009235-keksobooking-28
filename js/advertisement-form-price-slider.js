@@ -4,7 +4,7 @@ const START_VALUE = 5000;
 
 const advertisementForm = document.querySelector('.ad-form');
 const sliderElement = advertisementForm.querySelector('.ad-form__slider');
-const valueElement = advertisementForm.querySelector('input[id="price"]');
+const valueElement = advertisementForm.querySelector('#price');
 
 noUiSlider.create(sliderElement, {
   range: {

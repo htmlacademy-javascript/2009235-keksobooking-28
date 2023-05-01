@@ -5,6 +5,8 @@ import {addPoster} from './add-posters.js';
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const ZOOM = 13;
+const MAX_PINTS_COUNT = 10;
+
 const iconConfig = {
   url: './img/pin.svg',
   width: 40,
@@ -27,8 +29,14 @@ const startCoordinate = {
 };
 
 const advertisementForm = document.querySelector('.ad-form');
-const addressInput = advertisementForm.querySelector('input[id="address"]');
+const addressInput = advertisementForm.querySelector('#address');
 addressInput.setAttribute('readonly', true);
+
+const getIconConfiguration = (iconConfiguration) => ({
+  iconUrl: iconConfiguration.url,
+  iconSize: [iconConfiguration.width, iconConfiguration.height],
+  iconAnchor: [iconConfiguration.anchorX, iconConfiguration.anchorY],
+});
 
 const setAddressInputValue = ({ lat, lng }) => {
   addressInput.value = `${ lat.toFixed(5) } , ${ lng.toFixed(5) }`;
@@ -46,11 +54,7 @@ L.tileLayer(TILE_LAYER, {
   attribution: COPYRIGHT
 }).addTo(map);
 
-const icon = L.icon({
-  iconUrl: iconConfig.url,
-  iconSize: [iconConfig.width, iconConfig.height],
-  iconAnchor: [iconConfig.anchorX, iconConfig.anchorY],
-});
+const icon = L.icon(getIconConfiguration(iconConfig));
 
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -72,18 +76,15 @@ const createMarker = (point) => {
 };
 
 const createPoints = (points) => {
-  points.forEach((point) => {
+  markerGroup.clearLayers();
+  points.slice(0, MAX_PINTS_COUNT).forEach((point) => {
     createMarker(point);
   });
 };
 
 /*----------*/
 
-const mainPinIcon = L.icon({
-  iconUrl: iconMainConfig.url,
-  iconSize: [iconMainConfig.width, iconMainConfig.height],
-  iconAnchor: [iconMainConfig.anchorX, iconMainConfig.anchorY],
-});
+const mainPinIcon = L.icon(getIconConfiguration(iconMainConfig));
 
 const mainPinMarker = L.marker(startCoordinate, {
   draggable: true,

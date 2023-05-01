@@ -11,15 +11,15 @@ const MAX_TITLE_LENGTH = 100;
 const MAX_PRICE_VALUE = 100000;
 
 const advertisementForm = document.querySelector('.ad-form');
-const avatarFileInput = advertisementForm.querySelector('input[id="avatar"]');
-const photosInput = advertisementForm.querySelector('input[id="images"]');
-const titleInput = advertisementForm.querySelector('input[id="title"]');
-const typeInput = advertisementForm.querySelector('select[id="type"]');
-const priceInput = advertisementForm.querySelector('input[id="price"]');
-const roomsInput = advertisementForm.querySelector('select[id="room_number"]');
-const guestsInput = advertisementForm.querySelector('select[id="capacity"]');
-const checkinInput = advertisementForm.querySelector('select[id="timein"]');
-const checkoutInput = advertisementForm.querySelector('select[id="timeout"]');
+const avatarFileInput = advertisementForm.querySelector('#avatar');
+const photosInput = advertisementForm.querySelector('#images');
+const titleInput = advertisementForm.querySelector('#title');
+const typeInput = advertisementForm.querySelector('#type');
+const priceInput = advertisementForm.querySelector('#price');
+const roomsInput = advertisementForm.querySelector('#room_number');
+const guestsInput = advertisementForm.querySelector('#capacity');
+const checkinInput = advertisementForm.querySelector('#timein');
+const checkoutInput = advertisementForm.querySelector('#timeout');
 const inputsRequired = advertisementForm.querySelectorAll('[required]');
 
 
