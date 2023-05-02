@@ -77,9 +77,15 @@ const createMarker = (point) => {
 
 const createPoints = (points) => {
   markerGroup.clearLayers();
-  points.slice(0, MAX_PINTS_COUNT).forEach((point) => {
-    createMarker(point);
-  });
+  if (points.length >= MAX_PINTS_COUNT) {
+    points.slice(0, MAX_PINTS_COUNT).forEach((point) => {
+      createMarker(point);
+    });
+  } else {
+    points.forEach((point) => {
+      createMarker(point);
+    });
+  }
 };
 
 /*----------*/
