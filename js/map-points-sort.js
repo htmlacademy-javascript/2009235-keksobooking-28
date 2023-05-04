@@ -12,12 +12,11 @@ const PricesRange = {
 
 const mapFiltersForm = document.querySelector('.map__filters');
 
-/*let pointsData = [];
+let pointsData = [];
 
 const getPointsDataSort = (data) => {
   pointsData = data;
-  console.log(pointsData);
-};*/
+};
 
 const getAdvertisementRank = (advertisement) => {
   const featuresFilterElements = mapFiltersForm.querySelectorAll('#housing-features input');
@@ -28,7 +27,6 @@ const getAdvertisementRank = (advertisement) => {
   if (!advertisementFeatures) {
     return 0;
   }
-
 
   featuresFilterElements.forEach((featureFilter) => {
     if (featureFilter.checked && advertisementFeatures.includes(featureFilter.value)) {
@@ -46,7 +44,7 @@ const compareAdvertisement = (advertisementA, advertisementB) => {
   return rankB - rankA;
 };
 
-const startSort = (pointsData) => {
+const startSort = () => {
   const typeFilterElement = mapFiltersForm.querySelector('#housing-type');
   const priceFilterElement = mapFiltersForm.querySelector('#housing-price');
   const roomsFilterElement = mapFiltersForm.querySelector('#housing-rooms');
@@ -76,17 +74,33 @@ const startSort = (pointsData) => {
 
   accordanceType = accordanceType.slice().sort(compareAdvertisement);
 
+  /* На подумать... оставить фильтрацию или сортировку */
+  const featuresFilterElements = mapFiltersForm.querySelectorAll('#housing-features input');
+  featuresFilterElements.forEach((featureFilter) => {
+    if (featureFilter.checked) {
+      accordanceType = accordanceType.filter((element) => {
+        const advertisementFeatures = element.offer.features;
+        if (advertisementFeatures) {
+          return advertisementFeatures.includes(featureFilter.value);
+        }
+        return false;
+      });
+    }
+  });
+
   createPoints(accordanceType);
 };
 
-const debounceSort = debounce((pointsData) => startSort(pointsData), RENDER_DELAY);
+const debounceSort = debounce(startSort, RENDER_DELAY);
 
-const getPointsDataSort = (responseData) => {
-  const pointsData = responseData;
-  mapFiltersForm.addEventListener('change', () => {
-    debounceSort(pointsData);
-  });
+
+mapFiltersForm.addEventListener('change', () => {
+  debounceSort();
+});
+
+const resetMapFiltersForm = () => {
+  mapFiltersForm.reset();
+  startSort();
 };
 
-
-export {getPointsDataSort};
+export {getPointsDataSort, resetMapFiltersForm};

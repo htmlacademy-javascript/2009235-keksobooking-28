@@ -4,6 +4,8 @@ import {pristine} from './advertisement-form-check.js';
 import {resetSettingsForMainPin} from './add-map.js';
 import {resetPriceSlider} from './advertisement-form-price-slider.js';
 import {openLoadAdvertisementMessageSuccess, openLoadAdvertisementMessageError} from './advertisement-post-result-messages.js';
+import {resetMapFiltersForm} from './map-points-sort.js';
+import {resetPreviews} from './advertisement-form-change-picture-preview.js';
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
@@ -25,19 +27,6 @@ const unblockSubmitButton = () => {
 };
 
 /*----------*/
-/*
-const resetAdvertisementForm = (evt) => {
-  evt.preventDefault();
-  advertisementForm.reset();
-  resetPriceSlider();
-  resetSettingsForMainPin();
-  pristine.reset();
-};
-
-resetButton.addEventListener('click', resetAdvertisementForm);
-
-//resetButton.click();
-*/
 
 const resetAdvertisementForm = () => {
   advertisementForm.reset();
@@ -49,6 +38,7 @@ const resetAdvertisementForm = () => {
 resetButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   resetAdvertisementForm();
+  resetPreviews();
 });
 
 /*----------*/
@@ -68,6 +58,8 @@ async function postAdvertisementData (formData) {
   try {
     await sendData(formData);
     resetAdvertisementForm();
+    resetPreviews();
+    resetMapFiltersForm();
     openLoadAdvertisementMessageSuccess();
   } catch (err) {
     showAlert(err.message);
