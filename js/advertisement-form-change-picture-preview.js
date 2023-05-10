@@ -15,7 +15,7 @@ const changePicturePreview = (evt, preview) => {
   if (matches) {
     const previewFile = URL.createObjectURL(file);
     const previewIcon = preview.querySelector('img');
-    if (preview.querySelector('img')) {
+    if (previewIcon) {
       previewIcon.style.zIndex = '-1';
     }
 
@@ -27,7 +27,7 @@ const changePicturePreview = (evt, preview) => {
 
 const cleanPicturePreview = (preview) => {
   const previewIcon = preview.querySelector('img');
-  if (preview.querySelector('img')) {
+  if (previewIcon) {
     previewIcon.removeAttribute('style');
   }
   preview.removeAttribute('style');
