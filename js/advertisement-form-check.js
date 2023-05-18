@@ -35,17 +35,20 @@ const pristine = new Pristine(advertisementForm, {
 });
 
 
-const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-const validateFile = (value) => allowedExtensions.test(value) || value.length === 0;
+const allowedExtensionsMain = /(\.jpg|\.jpeg|\.png)$/i;
+const allowedExtensionsAvatart = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+const validateFileAvatart = (value) => allowedExtensionsAvatart.test(value) || value.length === 0;
+const validateFileMain = (value) => allowedExtensionsMain.test(value) || value.length === 0;
 
 pristine.addValidator(
   avatarFileInput,
-  validateFile,
+  validateFileAvatart,
 );
 
 pristine.addValidator(
   photosInput,
-  validateFile,
+  validateFileMain,
 );
 
 /*----------*/
