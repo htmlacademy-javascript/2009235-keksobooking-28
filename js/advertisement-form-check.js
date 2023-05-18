@@ -35,7 +35,8 @@ const pristine = new Pristine(advertisementForm, {
 });
 
 
-const validateFile = (value) => /.jpg$/i.test(value) || /.png$/i.test(value) || /.jpeg$/i.test(value) || value.length === 0;
+const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+const validateFile = (value) => allowedExtensions.test(value) || value.length === 0;
 
 pristine.addValidator(
   avatarFileInput,
@@ -52,19 +53,17 @@ pristine.addValidator(
 let titleErrorMessage = '';
 
 const validateTitle = (value) => {
-  let errors = 0;
-
   if (value.length <= MIN_TITLE_LENGTH || value.length >= MAX_TITLE_LENGTH) {
     titleErrorMessage = `От ${ MIN_TITLE_LENGTH } до ${ MAX_TITLE_LENGTH } символов. (введено: ${ value.length })`;
-    errors++;
+    return false;
   }
 
   if (value.trim() === ''){
     titleErrorMessage = 'Введены только пробелы.';
-    errors++;
+    return false;
   }
 
-  return errors === 0;
+  return true;
 };
 
 const getTitleErrorMessage = () => titleErrorMessage;

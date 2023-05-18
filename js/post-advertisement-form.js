@@ -16,14 +16,14 @@ const advertisementForm = document.querySelector('.ad-form');
 const submitButton = advertisementForm.querySelector('button[type="submit"]');
 const resetButton = advertisementForm.querySelector('button[type="reset"]');
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = SubmitButtonText.SENDING;
-};
-
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = SubmitButtonText.IDLE;
+const toggleSubmitBtn = (state) => {
+  if (state === 'blocked') {
+    submitButton.disabled = true;
+    submitButton.textContent = SubmitButtonText.SENDING;
+  } else {
+    submitButton.disabled = false;
+    submitButton.textContent = SubmitButtonText.IDLE;
+  }
 };
 
 /*----------*/
@@ -48,7 +48,7 @@ advertisementForm.addEventListener('submit', (evt) => {
   const isValid = pristine.validate();
 
   if (isValid) {
-    blockSubmitButton();
+    toggleSubmitBtn('blocked');
     postAdvertisementData(new FormData(evt.target));
   }
 });
@@ -65,6 +65,6 @@ async function postAdvertisementData (formData) {
     showAlert(err.message);
     openLoadAdvertisementMessageError();
   } finally {
-    unblockSubmitButton();
+    toggleSubmitBtn('unblocked');
   }
 }
