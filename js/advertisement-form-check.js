@@ -94,7 +94,19 @@ pristine.addValidator(
   priceErrorMessage,
 );
 
-typeInput.addEventListener('change', () => pristine.validate(priceInput));
+const chagePriceInputPlaceholder = () => {
+  priceInput.placeholder = MinPriceByType[typeInput.value];
+};
+
+chagePriceInputPlaceholder();
+
+typeInput.addEventListener('change', () => {
+  chagePriceInputPlaceholder();
+  if (priceInput.value) {
+    pristine.validate(priceInput);
+  }
+});
+
 
 /*----------*/
 
@@ -146,4 +158,5 @@ checkoutInput.addEventListener('change', onTimeoutChange);
 export {
   MAX_PRICE_VALUE,
   pristine,
+  chagePriceInputPlaceholder,
 };

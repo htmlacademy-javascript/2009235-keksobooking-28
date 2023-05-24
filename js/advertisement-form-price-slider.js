@@ -1,6 +1,6 @@
 import {MAX_PRICE_VALUE, pristine} from './advertisement-form-check.js';
 
-const START_VALUE = 5000;
+const START_VALUE = 0;
 
 const advertisementForm = document.querySelector('.ad-form');
 const sliderElement = advertisementForm.querySelector('.ad-form__slider');
@@ -47,8 +47,10 @@ const resetPriceSlider = () => {
   sliderElement.noUiSlider.updateOptions({
     start: START_VALUE,
   });
-  valueElement.value = START_VALUE;
+  valueElement.value = null;
 };
 
+valueElement.value = null;
+pristine.reset();
 
 export {setEnablePriceFilter, resetPriceSlider};

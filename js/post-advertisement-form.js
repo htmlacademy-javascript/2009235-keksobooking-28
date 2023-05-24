@@ -1,6 +1,6 @@
 import {showAlert} from './utils.js';
 import {sendData} from './api.js';
-import {pristine} from './advertisement-form-check.js';
+import {pristine, chagePriceInputPlaceholder} from './advertisement-form-check.js';
 import {resetSettingsForMainPin} from './add-map.js';
 import {resetPriceSlider} from './advertisement-form-price-slider.js';
 import {openLoadAdvertisementMessageSuccess, openLoadAdvertisementMessageError} from './advertisement-post-result-messages.js';
@@ -33,6 +33,7 @@ const resetAdvertisementForm = () => {
   resetPriceSlider();
   resetSettingsForMainPin();
   pristine.reset();
+  chagePriceInputPlaceholder();
 };
 
 resetButton.addEventListener('click', (evt) => {
