@@ -1,8 +1,9 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Polina Timonina](https://up.htmlacademy.ru/javascript/28/user/2009235).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Козлов](https://htmlacademy.ru/profile/id1479859).
 
+_Ссылка на страницу поекта: https://timonp.github.io/2009235-keksobooking-28/
 ---
 
 _Не удаляйте и не изменяйте самовольно файлы и папки:_

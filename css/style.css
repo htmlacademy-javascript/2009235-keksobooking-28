@@ -1048,3 +1048,14 @@ fieldset {
 .hidden {
   display: none;
 }
+
+.ad-form__element--error-text {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  color: #e90000;
+}
+
+.modal-open {
+  height: 100vh;
+  overflow: hidden;
+}
