@@ -11,6 +11,11 @@ const PricesRange = {
 
 
 const mapFiltersForm = document.querySelector('.map__filters');
+const typeFilterElement = mapFiltersForm.querySelector('#housing-type');
+const priceFilterElement = mapFiltersForm.querySelector('#housing-price');
+const roomsFilterElement = mapFiltersForm.querySelector('#housing-rooms');
+const guestsFilterElement = mapFiltersForm.querySelector('#housing-guests');
+const featuresFilterElements = mapFiltersForm.querySelectorAll('#housing-features input');
 
 let pointsData = [];
 
@@ -18,38 +23,8 @@ const getPointsDataSort = (data) => {
   pointsData = data;
 };
 
-const getAdvertisementRank = (advertisement) => {
-  const featuresFilterElements = mapFiltersForm.querySelectorAll('#housing-features input');
-
-  let rank = 0;
-
-  const advertisementFeatures = advertisement.offer.features;
-  if (!advertisementFeatures) {
-    return 0;
-  }
-
-  featuresFilterElements.forEach((featureFilter) => {
-    if (featureFilter.checked && advertisementFeatures.includes(featureFilter.value)) {
-      rank++;
-    }
-  });
-
-  return rank;
-};
-
-const compareAdvertisement = (advertisementA, advertisementB) => {
-  const rankA = getAdvertisementRank(advertisementA);
-  const rankB = getAdvertisementRank(advertisementB);
-
-  return rankB - rankA;
-};
 
 const startSort = () => {
-  const typeFilterElement = mapFiltersForm.querySelector('#housing-type');
-  const priceFilterElement = mapFiltersForm.querySelector('#housing-price');
-  const roomsFilterElement = mapFiltersForm.querySelector('#housing-rooms');
-  const guestsFilterElement = mapFiltersForm.querySelector('#housing-guests');
-
   let accordanceType = pointsData;
 
   if (typeFilterElement.value !== DEFAULT_FILTER) {
@@ -72,10 +47,6 @@ const startSort = () => {
     accordanceType = accordanceType.filter((element) => element.offer.guests === guestsCount);
   }
 
-  accordanceType = accordanceType.slice().sort(compareAdvertisement);
-
-  /* На подумать... оставить фильтрацию или сортировку */
-  const featuresFilterElements = mapFiltersForm.querySelectorAll('#housing-features input');
   featuresFilterElements.forEach((featureFilter) => {
     if (featureFilter.checked) {
       accordanceType = accordanceType.filter((element) => {
