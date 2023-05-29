@@ -44,16 +44,17 @@ resetButton.addEventListener('click', (evt) => {
 
 /*----------*/
 
-advertisementForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const isValid = pristine.validate();
+const onSubmitAdvertisementForm = () => {
+  advertisementForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
 
-  if (isValid) {
-    toggleSubmitBtn('blocked');
-    postAdvertisementData(new FormData(evt.target));
-  }
-});
-
+    if (isValid) {
+      toggleSubmitBtn('blocked');
+      postAdvertisementData(new FormData(evt.target));
+    }
+  });
+};
 
 async function postAdvertisementData (formData) {
   try {
@@ -69,3 +70,5 @@ async function postAdvertisementData (formData) {
     toggleSubmitBtn('unblocked');
   }
 }
+
+export {onSubmitAdvertisementForm};

@@ -30,6 +30,8 @@ const startCoordinate = {
 
 const advertisementForm = document.querySelector('.ad-form');
 const addressInput = advertisementForm.querySelector('#address');
+const map = L.map('map-canvas');
+
 addressInput.setAttribute('readonly', true);
 
 const getIconConfiguration = (iconConfiguration) => ({
@@ -38,21 +40,16 @@ const getIconConfiguration = (iconConfiguration) => ({
   iconAnchor: [iconConfiguration.anchorX, iconConfiguration.anchorY],
 });
 
-const setAddressInputValue = ({ lat, lng }) => {
-  addressInput.value = `${ lat.toFixed(5) } , ${ lng.toFixed(5) }`;
-};
-setAddressInputValue(startCoordinate);
-
-const map = L.map('map-canvas')
-  .on('load', () => {
+const initMap = () => {
+  map.on('load', () => {
     setEnableAdvertisementForm();
     setEnablePriceFilter();
-  })
-  .setView(startCoordinate, ZOOM);
-
-L.tileLayer(TILE_LAYER, {
-  attribution: COPYRIGHT
-}).addTo(map);
+  });
+  map.setView(startCoordinate, ZOOM);
+  L.tileLayer(TILE_LAYER, {
+    attribution: COPYRIGHT
+  }).addTo(map);
+};
 
 const icon = L.icon(getIconConfiguration(iconConfig));
 
@@ -99,6 +96,11 @@ const mainPinMarker = L.marker(startCoordinate, {
 
 mainPinMarker.addTo(map);
 
+const setAddressInputValue = ({ lat, lng }) => {
+  addressInput.value = `${ lat.toFixed(5) } , ${ lng.toFixed(5) }`;
+};
+setAddressInputValue(startCoordinate);
+
 mainPinMarker.on('moveend', (evt) => {
   const mainPinLatLng = evt.target.getLatLng();
   setAddressInputValue(mainPinLatLng);
@@ -111,4 +113,4 @@ const resetSettingsForMainPin = () => {
   map.closePopup();
 };
 
-export {createPoints, resetSettingsForMainPin};
+export {createPoints, resetSettingsForMainPin, initMap};
