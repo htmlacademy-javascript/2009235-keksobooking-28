@@ -17,17 +17,3 @@ const fetchPosters = async () => {
 };
 
 export {fetchPosters};
-
-/*
-getData()
-  .then((response) => {
-    createPoints(response);
-    setEnableMapFiltersForm();
-    getPointsDataSort(response);
-  })
-  .catch(
-    (err) => {
-      showAlert(err.message);
-    }
-  );
-*/
