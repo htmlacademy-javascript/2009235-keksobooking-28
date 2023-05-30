@@ -1,5 +1,10 @@
-import './get-posters.js';
-import './active-disable-state-forms.js';
-import './advertisement-form-check.js';
-import './advertisement-form-price-slider.js';
-import './post-advertisement-form.js';
+import {setDisableAdvertisementForm, setDisableMapFiltersForm} from './active-disable-state-forms.js';
+import {initMap} from './add-map.js';
+import {fetchPosters} from './get-posters.js';
+import {onSubmitAdvertisementForm} from './post-advertisement-form.js';
+
+setDisableAdvertisementForm();
+setDisableMapFiltersForm();
+initMap();
+fetchPosters();
+onSubmitAdvertisementForm();
