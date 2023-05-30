@@ -13,7 +13,7 @@ const OfferType = {
 const getOfferType = (type) => OfferType[type.toUpperCase()];
 
 const addPoster = ({ author, offer}) => {
-  const posterProps = [
+  const posterOptions = [
     {
       avatar: {
         condition: author.avatar,
@@ -75,7 +75,7 @@ const addPoster = ({ author, offer}) => {
 
   const posterElement = newPosterTemplate.cloneNode(true);
 
-  const renderPosterProp = (condition, querySelector, targetProp, targetValue) => {
+  const renderPosterOptions = (condition, querySelector, targetProp, targetValue) => {
     const targetElement = posterElement.querySelector(querySelector);
     if (condition) {
       targetElement[targetProp] = targetValue;
@@ -84,7 +84,7 @@ const addPoster = ({ author, offer}) => {
     }
   };
 
-  posterProps.forEach((item) => Object.values(item).map((value) => renderPosterProp(value.condition, value.querySelector, value.targetProp, value.targetValue)));
+  posterOptions.forEach((item) => Object.values(item).map((value) => renderPosterOptions(value.condition, value.querySelector, value.targetProp, value.targetValue)));
 
   if (offer.features) {
     const featuresList = posterElement.querySelector('.popup__features');

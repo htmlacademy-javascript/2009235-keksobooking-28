@@ -3,8 +3,6 @@ const DEBOUNSE_DEFAULT_TIME = 500;
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const isEnterKey = (evt) => evt.key === 'Enter';
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -38,7 +36,6 @@ const debounce = (callback, timeoutDelay = DEBOUNSE_DEFAULT_TIME) => {
 
 export {
   isEscapeKey,
-  isEnterKey,
   showAlert,
   debounce,
 };
