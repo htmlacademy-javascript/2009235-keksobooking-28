@@ -1,9 +1,9 @@
 const MinPriceByType = {
-  'flat': 1000,
-  'bungalow': 0,
-  'house': 5000,
-  'palace': 10000,
-  'hotel': 3000
+  FLAT: 1000,
+  BUNGALOW: 0,
+  HOUSE: 5000,
+  PALACE: 10000,
+  HOTEL: 3000
 };
 
 const MIN_TITLE_LENGTH = 30;
@@ -84,7 +84,7 @@ let minPriceValue;
 const priceErrorMessage = () => `От ${ minPriceValue.toLocaleString() } до ${ MAX_PRICE_VALUE.toLocaleString()}`;
 
 const validatePrice = (value) => {
-  minPriceValue = MinPriceByType[typeInput.value];
+  minPriceValue = MinPriceByType[typeInput.value.toUpperCase()];
   return value >= minPriceValue && value <= MAX_PRICE_VALUE;
 };
 
@@ -95,7 +95,7 @@ pristine.addValidator(
 );
 
 const chagePriceInputPlaceholder = () => {
-  priceInput.placeholder = MinPriceByType[typeInput.value];
+  priceInput.placeholder = MinPriceByType[typeInput.value.toUpperCase()];
 };
 
 chagePriceInputPlaceholder();

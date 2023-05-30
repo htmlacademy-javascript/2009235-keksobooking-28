@@ -36,8 +36,8 @@ addressInput.setAttribute('readonly', true);
 
 const getIconConfiguration = (iconConfiguration) => ({
   iconUrl: iconConfiguration.url,
-  iconSize: [iconConfiguration.width, iconConfiguration.height],
-  iconAnchor: [iconConfiguration.anchorX, iconConfiguration.anchorY],
+  iconSize: L.point(iconConfiguration.width, iconConfiguration.height),
+  iconAnchor: L.point(iconConfiguration.anchorX, iconConfiguration.anchorY),
 });
 
 const initMap = () => {
@@ -101,7 +101,7 @@ const setAddressInputValue = ({ lat, lng }) => {
 };
 setAddressInputValue(startCoordinate);
 
-mainPinMarker.on('moveend', (evt) => {
+mainPinMarker.on('move', (evt) => {
   const mainPinLatLng = evt.target.getLatLng();
   setAddressInputValue(mainPinLatLng);
 });
